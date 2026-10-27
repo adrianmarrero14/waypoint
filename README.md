@@ -1,51 +1,42 @@
 # Waypoint
 
-Waypoint is a friendly, ocean-themed personal organization app for iOS. Find your flow, one wave at a time. 🐋
+Waypoint is a friendly, ocean-themed personal organization app. Find your flow, one wave at a time. 🐋
 
-This repository will become the Waypoint monorepo (iOS, Android, web and API). Today it contains the iOS app.
+This is the Waypoint monorepo: every app and the backend live here, side by side.
 
-## Features
-
-- **Journal** — year and month views with quick entry creation.
-- **Tasks & Habits** — modular features to keep track of your day.
-- **Reminders** — local notification reminders.
-- **Dark mode** — full light/dark support with adaptive brand tokens.
-- **Localized** — Spanish and English out of the box.
-
-## Architecture
-
-The app is built with **SwiftUI** and **SwiftData**, following a modular architecture based on local Swift Package Manager packages:
+## Repository layout
 
 ```
 waypoint
-├── waypoint/               # App target (entry point, module registry, settings)
-└── Packages/
-    ├── DesignSystem/       # Brand colors, typography (Fredoka & Nunito), buttons, cards, motifs
-    ├── WaypointCore/       # Shared models, routing, app-wide settings
-    ├── WaypointFeature/    # Journal (year/month views, quick add)
-    ├── TasksFeature/       # Tasks module
-    └── HabitsFeature/      # Habits module
+├── ios/          # iOS app (SwiftUI + SwiftData, local SPM packages)
+├── api/          # Backend: Supabase project (database migrations, Edge Functions, config)
+├── branding/     # Brand guides (light and dark) shared by every app
+└── .github/      # Issue and pull request templates
 ```
 
-Key conventions:
+Future platforms (`android/`, `web/`) will be added as new top-level folders.
 
-- All UI is built exclusively with the `DesignSystem` package (semantic color tokens, `Font.wp*` scale, Waypoint button styles and cards).
-- User-facing strings live in String Catalogs (`Localizable.xcstrings`) with Spanish as the source language and English translations for every key.
-- Features are self-contained packages registered in the app's `ModuleRegistry`.
+| Project | Stack | Docs |
+|---|---|---|
+| iOS | SwiftUI, SwiftData, Swift Package Manager | [ios/README.md](ios/README.md) |
+| API | Supabase (Postgres, Auth, Edge Functions) | [api/README.md](api/README.md) |
 
-## Requirements
+## Features
 
-- Xcode 16 or later
-- iOS 18 or later
+- **Journal** — year and month views with quick wave creation.
+- **Tasks & Habits** — modular features to keep track of your day.
+- **Reminders** — local notification reminders.
+- **Accounts & sync** — Supabase auth with offline-first sync of waves.
+- **Dark mode** — full light/dark support with adaptive brand tokens.
+- **Localized** — Spanish and English out of the box.
 
 ## Getting started
 
-1. Clone the repository:
-   ```sh
-   git clone git@github.com:adrianmarrero14/waypoint.git
-   ```
-2. Open `waypoint.xcodeproj` in Xcode.
-3. Select the `waypoint` scheme and run. Local packages resolve automatically.
+```sh
+git clone git@github.com:adrianmarrero14/waypoint.git
+```
+
+Then follow the README of the project you want to work on.
 
 ## Branching model
 

@@ -1,19 +1,25 @@
-# Waypoint iOS
+# Waypoint
 
-Waypoint iOS app (SwiftUI, modular architecture with local SPM packages in `Packages/`).
+Monorepo for Waypoint, a friendly, ocean-themed personal organization app.
+
+## Layout
+
+- `ios/` — iOS app (SwiftUI). Rules in `ios/CLAUDE.md`.
+- `api/` — backend: Supabase project on the free plan (migrations, Edge Functions, config). Rules in `api/CLAUDE.md`.
+- `branding/` — light and dark brand guides, the source of truth for every app's UI.
+- Future platforms (`android/`, `web/`) go in new top-level folders with their own `CLAUDE.md`.
 
 ## Language conventions
 
-- Everything is written in English: code, comments, docs, commit messages, and this file.
-- UI text is always localized in Spanish and English. Never hardcode user-facing strings: use String Catalogs (`Localizable.xcstrings`) with keys like `module.tasks.name`, source language `es`, and a translated `en` entry for every key. In views, load with `String(localized:bundle:)` / `Text(_:bundle:)` using `.module` for package resources.
+- Everything is written in English: code, comments, docs, commit messages, and the `CLAUDE.md` files.
+- User-facing text is always localized in Spanish (source language) and English.
 
-## UI / Design system
+## Git
 
-All UI must be built with the `Packages/DesignSystem` package: colors `Color.wp*`, fonts `Font.fredoka(...)`/`Font.nunito(...)` and the `Font.wp*` scale, buttons `.buttonStyle(.waypointPrimary/.waypointSecondary/.waypointTertiary)`, cards `.waypointCard()`, `WaypointTag`, `WaveShape` and `Bubble`. No colors or fonts outside the system.
+- `main` is protected; `develop` is the integration branch. Branch off `develop` (`feature/…`, `fix/…`, `chore/…`) and open PRs against it.
+- A change spanning several projects (e.g. a migration plus the iOS code using it) goes in a single PR.
 
-For backgrounds, surfaces, text and outlines always use the **semantic tokens** (`Color.wpBackground`, `.wpSurface`, `.wpSurfaceBorder`, `.wpOutline`, `.wpTextPrimary/Secondary/Tertiary`, `.wpLabelAccent`, `.wpOnSplash`, `.wpButtonShadow`, `.wpCardShadow`, `.wpWaveFill`) — they adapt to light/dark automatically. Fixed palette colors (`.wpOceanBlue`, `.wpSplashSky`, …) are for cases where the color is the same in both modes. The user's theme choice (system/light/dark) lives in `AppearanceSettings` (WaypointCore) and is applied via `preferredColorScheme` in `ContentView`.
-
-## Branding (source: `../waypoint_branding_darkmode/` — light and dark guides)
+## Branding (source: `branding/` — light and dark guides)
 
 All UI must follow these brand rules. The identity is the Waypoint whale: friendly, round and optimistic, with a thick navy outline — every element inherits that style.
 
@@ -51,8 +57,7 @@ Dark usage ratio: Midnight 40% · Deep Navy 20% · Ocean Blue 20% · Whale Blue 
 
 - **Headlines: Fredoka** (weights 500–700). Always navy or white. Never long all-caps runs.
 - **Body: Nunito** (400 for paragraphs, 700–800 for labels and buttons). Minimum 14 pt on screen.
-- Scale: H1 48/56 · H2 32/40 · Body 16/26 · Label 13 (uppercase, wide letter-spacing, Ocean Blue). On iOS use the adapted `Font.wp*` scale (34/28/20/16/14/13).
-- Both ship as variable TTFs in `Packages/DesignSystem` and register automatically when using `Font.fredoka(...)` / `Font.nunito(...)` (or by calling `WaypointFont.register()`).
+- Scale: H1 48/56 · H2 32/40 · Body 16/26 · Label 13 (uppercase, wide letter-spacing, Ocean Blue). Each platform adapts this scale (see its `CLAUDE.md`).
 
 ### Graphic elements & UI
 
