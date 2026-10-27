@@ -1,27 +1,12 @@
-# Xcode
-xcuserdata/
-*.xcuserstate
-*.xcscmblueprint
-*.xccheckout
-DerivedData/
-build/
-
-# Workspace user settings
-*.xcodeproj/project.xcworkspace/xcuserdata/
-*.xcworkspace/xcuserdata/
-
-# Swift Package Manager
-.build/
-.swiftpm/
-Package.resolved
+# Shared ignores. Each project keeps its own .gitignore (ios/.gitignore, api/supabase/.gitignore).
 
 # macOS
 .DS_Store
 
-# CocoaPods (si se usa en el futuro; descomentar para ignorar Pods)
-# Pods/
+# Local environment files
+.env
+.env.local
+.env.*.local
 
-# fastlane
-fastlane/report.xml
-fastlane/screenshots/**/*.png
-fastlane/test_output
+# Claude Code local settings
+.claude/settings.local.json
