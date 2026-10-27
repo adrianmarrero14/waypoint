@@ -1,6 +1,8 @@
-# Waypoint iOS
+# Waypoint
 
 Waypoint is a friendly, ocean-themed personal organization app for iOS. Find your flow, one wave at a time. 🐋
+
+This repository will become the Waypoint monorepo (iOS, Android, web and API). Today it contains the iOS app.
 
 ## Features
 
@@ -15,7 +17,7 @@ Waypoint is a friendly, ocean-themed personal organization app for iOS. Find you
 The app is built with **SwiftUI** and **SwiftData**, following a modular architecture based on local Swift Package Manager packages:
 
 ```
-waypoint-ios
+waypoint
 ├── waypoint/               # App target (entry point, module registry, settings)
 └── Packages/
     ├── DesignSystem/       # Brand colors, typography (Fredoka & Nunito), buttons, cards, motifs
@@ -40,7 +42,7 @@ Key conventions:
 
 1. Clone the repository:
    ```sh
-   git clone git@github.com:adrianmarrero14/waypoint-ios.git
+   git clone git@github.com:adrianmarrero14/waypoint.git
    ```
 2. Open `waypoint.xcodeproj` in Xcode.
 3. Select the `waypoint` scheme and run. Local packages resolve automatically.
