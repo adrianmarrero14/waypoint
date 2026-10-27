@@ -7,6 +7,7 @@ Backend for Waypoint: a Supabase project (ref `kacjuwrmevghlxgyqyco`) on the **f
 - This folder is the source of truth for the backend. Every schema change is a migration in `supabase/migrations/` (`supabase migration new <name>`); never leave changes made only in the dashboard or via MCP — if one happens, capture it with `supabase db pull`.
 - Never edit a migration that has already been applied to the remote project; add a new one instead.
 - Every table in `public` has Row Level Security enabled, with policies that scope rows to `auth.uid()`.
+- The hosted project does not grant table privileges to the API roles by default (the local stack does). Every new table's migration must `revoke all ... from anon, authenticated, service_role` and then grant explicitly only what the app needs; RLS policies do nothing without these grants.
 - Edge Functions live in `supabase/functions/<name>/` (Deno + TypeScript). Secrets go in Supabase secrets (`supabase secrets set`), never in the repo.
 - Changes the iOS app depends on (columns, functions) must stay backwards compatible with the app version in the store, or ship together with the app change.
 
